@@ -15,6 +15,7 @@ llm = ChatOpenAI(
     api_key=os.getenv("OPENAI_API_KEY"),
     timeout=30,        # fail fast instead of hanging
     max_retries=0,     # surface 429s, don't silently back off
+    max_tokens=512,
 )
 
 agent = create_agent(llm, [add, get_weather])
