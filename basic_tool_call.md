@@ -267,39 +267,6 @@ All four should print `PASS`.
 
 ---
 
-## Definition of done for Project 1
-
-- [x] Two tools defined and callable (`add`, `get_weather`)
-- [x] Agent routes single-tool queries correctly
-- [x] Agent routes combined queries to both tools in parallel
-- [x] Agent handles tool-free queries without spurious calls
-- [x] No deprecation warnings on the current import path
-- [x] Network failures surface as errors within 20 s (not hangs)
-- [x] `.env` ignored by git; `.env` not tracked
-- [x] Rebuildable from a fresh clone via `uv sync` + `.env` re-add
-
----
-
-## Commands reference (copy-paste)
-
-```bash
-# One-time setup (new machine)
-uv python install 3.12
-cd ~/agents-course/basic-agent
-uv sync
-
-# Create .env with Groq key
-cat > .env <<'EOF'
-OPENAI_API_KEY=gsk_...
-OPENAI_BASE_URL=https://api.groq.com/openai/v1
-MODEL=llama-3.1-8b-instant
-EOF
-
-# Run
-uv run python -m basic_agent.main
-
-# Diagnose
-uv pip list | grep -E "^(langchain|langgraph)"
 curl -4 -sS -o /dev/null -w "%{http_code} %{time_total}s\n" \
   --max-time 10 https://api.groq.com/openai/v1/models
 ```
