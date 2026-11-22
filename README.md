@@ -1,6 +1,6 @@
-# Agents Course — Build Journals
+# Agents Course 
 
-Hands-on projects for the AI Agents course. Each session has a **build journal**: a chronological record of the *process* of building it (environment, commands, failures, fixes), kept separate from the committed source code.
+Hands-on projects for the AI Agents course. Each session has a build journal.
 
 ## Sessions
 
