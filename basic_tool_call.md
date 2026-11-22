@@ -265,9 +265,4 @@ All four should print `PASS`.
 
 > **Note:** `12+30` will NOT call `add` — the model does trivial arithmetic in-head. Use big numbers or "Use the add tool" phrasing when testing routing.
 
----
-
-curl -4 -sS -o /dev/null -w "%{http_code} %{time_total}s\n" \
-  --max-time 10 https://api.groq.com/openai/v1/models
-```
 
