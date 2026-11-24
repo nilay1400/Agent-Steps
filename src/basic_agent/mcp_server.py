@@ -6,6 +6,21 @@ from typing import Annotated
 from mcp.server.fastmcp import FastMCP
 from pydantic import Field
 
+import json
+from pathlib import Path
+from uuid import uuid4
+
+OUTPUTS = Path("outputs")
+
+
+def clip(text: str, limit: int = 4000) -> str:
+    if len(text) <= limit:
+        return text
+    OUTPUTS.mkdir(exist_ok=True)
+    path = OUTPUTS / f"{uuid4().hex}.txt"
+    path.write_text(text)
+    return text[:limit] + f"\n... [truncated: full output in {path}]"
+
 mcp = FastMCP("basic-agent-tools")
 
 
@@ -64,11 +79,7 @@ def run_python(
         return "ERROR: sandbox timed out after 8 seconds."
 
     output = (proc.stdout or "") + (proc.stderr or "")
-    if len(output) > 4000:
-        output = output[:4000] + "\n...[truncated]"
-
-    return f"exit={proc.returncode}\n{output}"
-
+    return f"exit={proc.returncode}\n{clip(output)}"
 
 if __name__ == "__main__":
     mcp.run()
